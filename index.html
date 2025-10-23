@@ -1,0 +1,106 @@
+<!-- index.html
+  I den här filen sätts sidans struktur och css-filen (style.css) kallas in/länkas
+  från head-sektionen för formatteringen. Javascript-filen (app.js) som skapar de
+  de interaktiva funktionerna "ropas in" sist bland alla html-element, längst ned i body.
+-->
+<!doctype html>
+<html lang="sv">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Klassföräldrar till 2 B</title>
+
+  <!-- Här kallas css-filen in, innan sidans innehåll visas.
+   Webbläsaren kopplar CSS-filen med HTML-sidan via länken i link-taggen,
+   sen läser webbläsaren in stilarna/formatteringen och tillämpar dom.
+   -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header>
+  <h1>En sida för klassföräldrarna i 2b</h1>
+  <p class="tagline">Vi stöttar och stärker våra barn tillsammans</p>
+</header>
+
+<!-- Main-innehållet består av två lådor/sektioner med olika id:n:
+clock-section och quite-section där formatteringen i css-filen följer klassen "card"
+ -->
+<main>
+  <!-- lådan för klockan med hälsningsfrasen -->
+  <section id="clock-section" class="card">
+    <!-- en egen div där tiden visas och "aria-live" gör att skärmläsare uppdateras automatiskt när tiden ändras -->
+    <div id="time" aria-live="polite" class="time">--:--:--</div>
+    <!-- Hälsning som uppdateras utifrån vilken tid det är  -->
+    <div id="greeting" class="greeting">Hej!</div>
+  </section>
+
+  <!-- lådan där man kan slumpa klassföräldrar -->
+  <section id="slump-section" class="card">
+    <h2>Lotta klassföräldrar!</h2>
+
+    <!-- Här visas först en instruktion om att trycka på knappen för att slumpa
+    klassförälder, sedan byts den texten ut till senaste slumpade namnet -->
+    <p id="current-name" class="name">Klicka på knappen för att slumpa fram vilka som blir klassföräldrar. Totalt fyra barns föräldrar ska väljas:</p>
+
+    <!-- Knappar som formges genom div-klassen "controls"
+    och den genrella rot-formatteringen + knappformattering i css:en.
+    En knapp för att slumpa en förälder (new-name) och en knapp för
+    att rensa (clear-history) alla tidigare slumpade namn som dyker upp
+    under p-klassen current-name -->
+
+    <div class="controls">
+      <button id="new-name">Slumpa en förälder!</button>
+      <button id="clear-history">Rensa alla namn</button>
+    </div>
+
+    <h3>Slumpade klassföräldrar</h3>
+    <!-- Här skapas en lista som fylls på dynamiskt av js-koden. Även här
+     används aria-live för att meddela skärmläsaren när ett nytt namn slumpats
+     fram, exempelvis bra för synskadade men även av andra anledningar-->
+    <ul id="name-history" class="name-history" aria-live="polite"></ul>
+  </section>
+
+  </section>
+
+  <!-- NY SEKTION: Få middagstips -->
+  <section id="dinner-section" class="card">
+    <h2>Få middagstips</h2>
+    <p class="lead">Välj en kategori och få ett slumpmässigt middagstips.</p>
+
+    <h3 class="small-heading">Vad är du sugen på?</h3>
+
+    <!-- Knappar för kategorier -->
+    <div class="category-controls controls" role="toolbar" aria-label="Maträttskategorier">
+      <button class="category-btn" data-cat="chicken">Chicken</button>
+      <button class="category-btn" data-cat="beef">Beef</button>
+      <button class="category-btn" data-cat="vegetarian">Vegetarian</button>
+      <button class="category-btn" data-cat="miscellaneous">Miscellaneous</button>
+      <button class="category-btn" data-cat="seafood">Seafood</button>
+      <button class="category-btn" data-cat="pork">Pork</button>
+      <button class="category-btn" data-cat="pasta">Pasta</button>
+      <button class="category-btn" data-cat="vegan">Vegan</button>
+    </div>
+
+    <!-- Plats där den slumpade rätten kommer att visas (JS fyller den senare) -->
+    <div id="meal-result" class="meal-result" aria-live="polite" aria-atomic="true">
+      <!-- Exempeltext (kan tas bort av JS) -->
+      <p class="muted">Tryck på en kategori för att få ett middagstips.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Det här appen gjordes på initiativ av Josephine Bergenmar</p>
+</footer>
+
+<!-- Sist av alla html-elemtn kallas js-filen in för att inte blockera laddningen/
+renderingen av sidan. När js-scriptet sedan körs är DOM-trädet alltså klart vilket
+gör att javascript kan manipulera element direkt utan att behöva vänta på att
+dokumentet ska bli klart. -->
+
+<script src="js/app.js"></script>
+<script src="js/meals.js"></script>
+</body>
+</html>

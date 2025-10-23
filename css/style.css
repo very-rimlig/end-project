@@ -1,0 +1,212 @@
+/* Grund - global styling*/
+
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --accent: #663399;
+  --muted: #6b7280;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(16,24,40,0.08);
+  --font: 'Fredoka', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; padding:0; font-family:var(--font); background:var(--bg); color:#111827; }
+
+header {
+  text-align:center;
+  padding:2rem 1rem 1rem;
+}
+header h1 { margin:0; font-size:1.8rem; }
+header .tagline { color:var(--muted); margin-top:0.5rem; }
+
+/* Huvudlayoutens styling */
+main {
+  max-width:800px;
+  margin:1rem auto 3rem;
+  padding:0 1rem;
+  display:grid;
+  gap:1rem;
+}
+
+/* Kort-stil för sektionerna */
+.card {
+  background:var(--card);
+  padding:1.25rem;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* Klockans styling */
+.time {
+  font-size:2.2rem;
+  font-weight:700;
+  text-align:center;
+}
+.greeting {
+  text-align:center;
+  margin-top:0.5rem;
+  color:var(--accent);
+  font-weight:600;
+}
+
+/* Citat-sektionen */
+.name {
+  font-size:1.05rem;
+  margin:0.75rem 0;
+  min-height:3em;
+}
+.controls {
+  display:flex;
+  gap:.5rem;
+  margin-bottom:0.75rem;
+}
+button {
+  padding:0.5rem 0.9rem;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-weight:600;
+  background:var(--accent);
+  color:white;
+  box-shadow:0 4px 10px rgba(37,99,235,0.16);
+}
+button:active { transform:translateY(1px); }
+
+/* Rensa-knapp i annan stil */
+#clear-history {
+  background:black;
+  box-shadow:0 4px 10px rgba(239,68,68,0.12);
+}
+
+/* Historiklista */
+.name-history {
+  list-style:none;
+  padding-left:0;
+  margin:0;
+  padding: 0.5rem 0;
+
+
+
+}
+.name-history li {
+  padding:0.45rem;
+  border-radius:8px;
+  margin-bottom:0.4rem;
+  background:#f3f4f6;
+  font-size:0.95rem;
+  display:flex;
+  justify-content:space-between;
+  gap:0.5rem;
+}
+
+/* Ta bort-knapp per list-item */
+.remove-name {
+  background:transparent;
+  border:0;
+  color:var(--muted);
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* Footer */
+footer {
+  text-align:center;
+  color:yellowgreen;
+  font-size:0.9rem;
+  padding:1rem;
+  background-color: black;
+}
+
+/* Responsiv */
+@media (min-width:720px){
+  main { display:grid; grid-template-columns: 1fr 1fr; }
+  header{ padding-top:3rem; }
+}
+
+
+/* ----------------------------- */
+/* Dinner tips section styling   */
+/* ----------------------------- */
+
+/* Se till att sektionen går över båda kolumner i grid-layout */
+#dinner-section {
+  grid-column: 1 / -1; /* spänner över hela gridens bredd */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Liten ledtext under h2 */
+#dinner-section .lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* mindre under-rubrik */
+#dinner-section .small-heading {
+  margin-top: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight:600;
+}
+
+/* Anpassa controls för kategoriknappar — tillåter wrap */
+.category-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Ge kategoriknapparna lite mindre padding än huvudknapparna men samma stil */
+.category-btn {
+  padding: 0.45rem 0.75rem;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 10px rgba(37,99,235,0.12);
+  white-space: nowrap;
+}
+
+/* Bra fokus-stil för tillgänglighet */
+.category-btn:focus {
+  outline: 3px solid rgba(102,51,153,0.18);
+  outline-offset: 2px;
+}
+
+/* Resultatzon för den slumpade rätten */
+.meal-result {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: #f9fafb;
+  min-height: 3.2rem;
+  display: flex;
+  align-items: center;
+}
+
+/* mindre, dämpad text i startläget */
+.meal-result .muted {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Mobil: gör knapparna ta mer plats om användaren vill */
+@media (max-width: 480px) {
+  .category-btn {
+    flex: 1 1 calc(50% - 0.5rem);
+    text-align: center;
+  }
+}
+
+/* Desktop: se till att section beter sig snyggt i två-kolumns-layout */
+@media (min-width: 720px) {
+  #dinner-section {
+    padding: 1.25rem;
+  }
+}
