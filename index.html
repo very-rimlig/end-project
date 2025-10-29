@@ -1,6 +1,6 @@
 <!-- index.html
   I den här filen sätts sidans struktur och css-filen (style.css) kallas in/länkas
-  från head-sektionen för formatteringen. Javascript-filen (app.js) som skapar de
+  från head-sektionen för formatteringen. Javascript-filerna (app.js + meals.js) som skapar de
   de interaktiva funktionerna "ropas in" sist bland alla html-element, längst ned i body.
 -->
 <!doctype html>
@@ -61,34 +61,34 @@ clock-section och quite-section där formatteringen i css-filen följer klassen 
     <ul id="name-history" class="name-history" aria-live="polite"></ul>
   </section>
 
-  </section>
-
-  <!-- NY SEKTION: Få middagstips -->
+  <!-- NY sektion för de slumpade rätterna/middagstips -->
   <section id="dinner-section" class="card">
     <h2>Få middagstips</h2>
     <p class="lead">Välj en kategori och få ett slumpmässigt middagstips.</p>
 
-    <h3 class="small-heading">Vad är du sugen på?</h3>
+    <h3 class="small-heading">Vad är du sugen på idag?</h3>
 
-    <!-- Knappar för kategorier -->
+    <!-- knappar för kategorier, dessa är viktiga för interaktiviteten genom att... -->
     <div class="category-controls controls" role="toolbar" aria-label="Maträttskategorier">
-      <button class="category-btn" data-cat="chicken">Chicken</button>
-      <button class="category-btn" data-cat="beef">Beef</button>
-      <button class="category-btn" data-cat="vegetarian">Vegetarian</button>
-      <button class="category-btn" data-cat="miscellaneous">Miscellaneous</button>
-      <button class="category-btn" data-cat="seafood">Seafood</button>
-      <button class="category-btn" data-cat="pork">Pork</button>
+      <button class="category-btn" data-cat="chicken">Kyckling</button>
+      <button class="category-btn" data-cat="beef">Nötkött</button>
+      <button class="category-btn" data-cat="vegetarian">Vego</button>
+      <button class="category-btn" data-cat="miscellaneous">Blandat</button>
+      <button class="category-btn" data-cat="seafood">Skaldjur/Fisk</button>
+      <button class="category-btn" data-cat="pork">Fläskkött</button>
       <button class="category-btn" data-cat="pasta">Pasta</button>
-      <button class="category-btn" data-cat="vegan">Vegan</button>
+      <button class="category-btn" data-cat="vegan">Veganskt</button>
     </div>
 
     <!-- Plats där den slumpade rätten kommer att visas (JS fyller den senare) -->
     <div id="meal-result" class="meal-result" aria-live="polite" aria-atomic="true">
-      <!-- Exempeltext (kan tas bort av JS) -->
+
       <p class="muted">Tryck på en kategori för att få ett middagstips.</p>
     </div>
   </section>
-
+  <h3 class="small-heading">
+    För att se alla rätter – klicka <a href="meals.html">HÄR!</a>
+  </h3>
 </main>
 
 <footer>
