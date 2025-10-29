@@ -73,7 +73,7 @@ Annars visas texten ”Välj en kategori för att se rätterna.”
 
 
 ## Så kör du appen:
-1. Öppna filen "index.html" eller i en webbläsare (eller på annat sätt).
+1. Öppna filen "index.html" eller i en webbläsare eller gå till demon på https://very-rimlig.github.io/end-project/index.html
 2 eller 3. Slumpa maträtt utifrån kategori på "index.html"
 3 eller 2. Gå till "meals.html" och visa alla rätter per kategori
 
