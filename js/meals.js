@@ -1,61 +1,43 @@
-<!-- meals2.html
-  I den här filen sätts sidans struktur och css-filen (style.css) kallas in/länkas
-  från head-sektionen för formatteringen. Javascript-filen (meals2.js) som skapar de
-  de interaktiva funktionerna "ropas in" sist bland alla html-element, längst ned i body.
--->
-<!doctype html>
-<html lang="sv">
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Klassföräldrar till 2 B</title>
+// meals.js - lokal mock-version för middagstips
+//med lokala listor med exempelrätter per kategoro
+// Objektet/variabeln "meals" fungerar som en "mock-databas"
+//här sker alltså ingen inhämtning via API
 
-  <!-- Här kallas css-filen in, innan sidans innehåll visas.
-   Webbläsaren kopplar CSS-filen med HTML-sidan via länken i link-taggen,
-   sen läser webbläsaren in stilarna/formatteringen och tillämpar dom.
-   -->
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<header>
-  <h1>En sida för klassföräldrarna i 2b</h1>
-  <p class="tagline">Vi stöttar och stärker våra barn tillsammans</p>
-</header>
 
-<!-- Main-innehållet består av två lådor/sektioner med olika id:n:
-clock-section och quite-section där formatteringen i css-filen följer klassen "card"
- -->
-<main>
 
-  <!-- NY SEKTION: Få middagstips -->
-  <section id="dinner-section" class="card">
-    <button id="home" onclick="window.location.href='index.html'" style ="background-color: black; font-size: 20px; padding: 10px 20px;">Hem</button>
-    <h2>Lista alla rätter</h2>
-    <p class="lead">Tryck på en kategori för att lista alla dess rätter</p>
+const meals = {
+  chicken: ["Kycklinggryta med curry", "Grillad kyckling med sallad", "Kycklingwok med nudlar"],
+  beef: ["Biff Stroganoff", "Hamburgare med pommes", "Oxfilé med potatisgratäng"],
+  vegetarian: ["Grönsaksgryta", "Vegolasagne", "Halloumiburgare"],
+  miscellaneous: ["Tacos", "Pizza", "Quesadillas"],
+  seafood: ["Lax med citron och dill", "Räkpasta", "Fiskgratäng"],
+  pork: ["Fläskfilé med svampsås", "Revbensspjäll", "Pannkakor med bacon"],
+  pasta: ["Spaghetti Bolognese", "Pasta Carbonara", "Pasta med pesto"],
+  vegan: ["Veganburgare", "Tofuwok med grönsaker", "Chili sin carne"]
+};
 
-    <!-- Knappar för kategorier -->
-<div id = "categories">
-  <button class = "category-btn" data-cat="chicken">Kyckling</button>
-  <button class = "category-btn" data-cat="beef">Nötkött</button>
-  <button class = "category-btn" data-cat="vegetarian">Vegetariskt</button>
-  <button class = "category-btn" data-cat="pork">Fläskkött</button>
-</div>
-<div id ="meal-result"><em>Välj en kategori</em></div>
+// hämtar alla kategoriknappar (element med klass 'category-btn')/ NodeList med alla kategori-knappar.
+const categoryButtons = document.querySelectorAll('.category-btn');
+// hämtar elementet där resultatet ska visas.
+const mealResult = document.getElementById('meal-result');
 
-  </section>
-
-</main>
-
-<footer>
-  <p>Det här appen gjordes på initiativ av Josephine Bergenmar</p>
-</footer>
-
-<!-- Sist av alla html-elemtn kallas js-filen in för att inte blockera laddningen/
-renderingen av sidan. När js-scriptet sedan körs är DOM-trädet alltså klart vilket
-gör att javascript kan manipulera element direkt utan att behöva vänta på att
-dokumentet ska bli klart. -->
-
-<script src="js/meals2.js"></script>
-</body>
-</html>
+// för varje kategori-knapp , adderas en eventlistener (vid clikc).
+categoryButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // läser av data-attribut 'data-cat' från den klickade knappen.
+    const category = button.dataset.cat;
+    // hämtar motsvarande array med rätter från objektet 'meals' utifrån data-attribut
+    const categoryMeals = meals[category];
+    // kontrollerar att det finns rätter i aktuell kategori
+    if (categoryMeals && categoryMeals.length > 0) {
+      // här väljs ett slumpmässigt nummer (index) mellan 0 och categoryMeals.length - 1
+      const randomIndex = Math.floor(Math.random() * categoryMeals.length);
+      const randomMeal = categoryMeals[randomIndex];
+      // uppdaterar DOM-trädet med den slumpade rätten.
+      mealResult.innerHTML = `<p>${randomMeal}</p>`;
+    } else {
+      // felmeddelande om ingen rätt finns i kategorin
+      mealResult.innerHTML = `<p>Ingen rätt tillgänglig för denna kategori.</p>`;
+    }
+  });
+});
