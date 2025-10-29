@@ -1,0 +1,61 @@
+<!-- meals2.html
+  I den här filen sätts sidans struktur och css-filen (style.css) kallas in/länkas
+  från head-sektionen för formatteringen. Javascript-filen (meals2.js) som skapar de
+  de interaktiva funktionerna "ropas in" sist bland alla html-element, längst ned i body.
+-->
+<!doctype html>
+<html lang="sv">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Klassföräldrar till 2 B</title>
+
+  <!-- Här kallas css-filen in, innan sidans innehåll visas.
+   Webbläsaren kopplar CSS-filen med HTML-sidan via länken i link-taggen,
+   sen läser webbläsaren in stilarna/formatteringen och tillämpar dom.
+   -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header>
+  <h1>En sida för klassföräldrarna i 2b</h1>
+  <p class="tagline">Vi stöttar och stärker våra barn tillsammans</p>
+</header>
+
+<!-- Main-innehållet består av två lådor/sektioner med olika id:n:
+clock-section och quite-section där formatteringen i css-filen följer klassen "card"
+ -->
+<main>
+
+  <!-- NY SEKTION: Få middagstips -->
+  <section id="dinner-section" class="card">
+    <button id="home" onclick="window.location.href='index.html'" style ="background-color: black; font-size: 20px; padding: 10px 20px;">Hem</button>
+    <h2>Lista alla rätter</h2>
+    <p class="lead">Tryck på en kategori för att lista alla dess rätter</p>
+
+    <!-- Knappar för kategorier -->
+<div id = "categories">
+  <button class = "category-btn" data-cat="chicken">Kyckling</button>
+  <button class = "category-btn" data-cat="beef">Nötkött</button>
+  <button class = "category-btn" data-cat="vegetarian">Vegetariskt</button>
+  <button class = "category-btn" data-cat="pork">Fläskkött</button>
+</div>
+<div id ="meal-result"><em>Välj en kategori</em></div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>Det här appen gjordes på initiativ av Josephine Bergenmar</p>
+</footer>
+
+<!-- Sist av alla html-elemtn kallas js-filen in för att inte blockera laddningen/
+renderingen av sidan. När js-scriptet sedan körs är DOM-trädet alltså klart vilket
+gör att javascript kan manipulera element direkt utan att behöva vänta på att
+dokumentet ska bli klart. -->
+
+<script src="js/meals2.js"></script>
+</body>
+</html>
